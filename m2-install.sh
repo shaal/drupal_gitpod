@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /workspace/magento2gitpod &&
+cd /workspace/drupal_gitpod &&
 tar -xvf magento-2.3.5.tar.gz &&
 mysql -e 'create database nemanja;' &&
 url=$(gp url | awk -F"//" {'print $2'}) && url+="/" && url="https://8002-"$url

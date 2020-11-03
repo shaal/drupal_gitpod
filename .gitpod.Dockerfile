@@ -37,8 +37,8 @@ RUN apt install -y php-pear
 #    && apt-get clean \
 #    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 #    && echo "daemon off;" >> /etc/nginx/nginx.conf
-    
-    
+
+
 #Install php-fpm7.3
 RUN apt-get update \
     && apt-get install -y nginx curl zip unzip git software-properties-common supervisor sqlite3 \
@@ -91,7 +91,7 @@ RUN set -ex; \
 	apt-get install -y \
 		percona-server-server-5.7 percona-server-client-5.7 percona-server-common-5.7 \
 	;
-	
+
 RUN chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring
 
 # Install our own MySQL config
@@ -164,7 +164,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -yq tideway
     apt-get autoremove --assume-yes && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-    
+
 ENTRYPOINT ["tideways-daemon","--hostname=tideways-daemon","--address=0.0.0.0:9135"]
 
 RUN echo 'deb http://s3-eu-west-1.amazonaws.com/tideways/packages debian main' > /etc/apt/sources.list.d/tideways.list && \
@@ -184,12 +184,12 @@ RUN sudo apt-get update \
  && sudo apt-get install -y \
   redis-server \
  && sudo rm -rf /var/lib/apt/lists/*
- 
+
  #n98-magerun2 tool.
  RUN wget https://files.magerun.net/n98-magerun2.phar \
      && chmod +x ./n98-magerun2.phar \
      && mv ./n98-magerun2.phar /usr/local/bin/n98-magerun2
-     
+
 #Install APCU
 RUN echo "apc.enable_cli=1" > /etc/php/7.3/cli/conf.d/20-apcu.ini
 RUN echo "priority=25" > /etc/php/7.3/cli/conf.d/25-apcu_bc.ini
@@ -218,19 +218,19 @@ RUN \
   touch /etc/php/7.3/cli/conf.d/newrelic.ini && \
   sed -i \
       -e 's/"REPLACE_WITH_REAL_KEY"/"ba052d5cdafbbce81ed22048d8a004dd285aNRAL"/' \
-      -e 's/newrelic.appname = "PHP Application"/newrelic.appname = "magento2gitpod"/' \
+      -e 's/newrelic.appname = "PHP Application"/newrelic.appname = "drupal_gitpod"/' \
       -e 's/;newrelic.daemon.app_connect_timeout =.*/newrelic.daemon.app_connect_timeout=15s/' \
       -e 's/;newrelic.daemon.start_timeout =.*/newrelic.daemon.start_timeout=5s/' \
       /etc/php/7.3/cli/conf.d/newrelic.ini && \
   sed -i \
       -e 's/"REPLACE_WITH_REAL_KEY"/"ba052d5cdafbbce81ed22048d8a004dd285aNRAL"/' \
-      -e 's/newrelic.appname = "PHP Application"/newrelic.appname = "magento2gitpod"/' \
+      -e 's/newrelic.appname = "PHP Application"/newrelic.appname = "drupal_gitpod"/' \
       -e 's/;newrelic.daemon.app_connect_timeout =.*/newrelic.daemon.app_connect_timeout=15s/' \
       -e 's/;newrelic.daemon.start_timeout =.*/newrelic.daemon.start_timeout=5s/' \
       /etc/php/7.3/fpm/conf.d/newrelic.ini && \
   sed -i 's|/var/log/newrelic/|/tmp/|g' /etc/php/7.3/fpm/conf.d/newrelic.ini && \
   sed -i 's|/var/log/newrelic/|/tmp/|g' /etc/php/7.3/cli/conf.d/newrelic.ini
-     
+
 RUN chown -R gitpod:gitpod /etc/php
 RUN chown -R gitpod:gitpod /etc/newrelic
 COPY newrelic.cfg /etc/newrelic
@@ -257,7 +257,7 @@ USER gitpod
 
 #RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh \
 #    && sdk default java 11.0.5-open"
-    
+
 RUN curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.16.tar.gz --output elasticsearch-5.6.16.tar.gz \
     && tar -xzf elasticsearch-5.6.16.tar.gz
 ENV ES_HOME56="$HOME/elasticsearch-5.6.16"

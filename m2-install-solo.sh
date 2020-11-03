@@ -1,6 +1,6 @@
 #!/bin/bash
-cd /workspace/magento2gitpod &&
-git clone https://github.com/magento/magento2.git && cd magento2 && cp -avr .* /workspace/magento2gitpod && cd .. && rm -r -f magento2 &&
+cd /workspace/drupal_gitpod &&
+git clone https://github.com/magento/magento2.git && cd magento2 && cp -avr .* /workspace/drupal_gitpod && cd .. && rm -r -f magento2 &&
 
 url=$(gp url | awk -F"//" {'print $2'}) && url+="/" && url="https://8002-"$url
 

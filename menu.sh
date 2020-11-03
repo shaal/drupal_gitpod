@@ -40,7 +40,7 @@ action3() {
     cd baler &&
     npm install &&
     npm run build &&
-    alias baler='/workspace/magento2gitpod/baler/bin/baler'
+    alias baler='/workspace/drupal_gitpod/baler/bin/baler'
     echo -n "Baler tool successfully installed! Press enter to continue ... "
     read response
 
@@ -49,7 +49,7 @@ action3() {
 
 action4() {
     echo "Installing MagePack service"
-    cd /workspace/magento2gitpod &&
+    cd /workspace/drupal_gitpod &&
     /usr/bin/php -dmemory_limit=20000M /usr/bin/composer require creativestyle/magesuite-magepack &&
     n98-magerun2 setup:upgrade && n98-magerun2 setup:di:compile && n98-magerun2 setup:static-content:deploy &&
     n98-magerun2 cache:clean && n98-magerun2 cache:flush &&
@@ -116,7 +116,7 @@ action10() {
 }
 
 action11() {
-    echo "Starting Newrelic service, Please update .gitpod.Dockerfile (https://github.com/nemke82/magento2gitpod/blob/master/.gitpod.Dockerfile) with license key."
+    echo "Starting Newrelic service, Please update .gitpod.Dockerfile (https://github.com/nemke82/drupal_gitpod/blob/master/.gitpod.Dockerfile) with license key."
     newrelic-daemon -c /etc/newrelic/newrelic.cfg &
     echo -n "Newrelic service started! Press enter to continue ... "
     read response
